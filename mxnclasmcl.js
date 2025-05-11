@@ -56,17 +56,12 @@ function relaunchAsAdmin() {
     const scriptArgs = process.argv.slice(1).join(' ');
     const command = `powershell -Command "Start-Process '${scriptPath}' -ArgumentList '${scriptArgs}' -Verb RunAs"`;
 
-    console.log('Relaunching the script as administrator...');
-    execSync(command, { stdio: 'inherit' });
-    process.exit(0);
 }
 
 async function main() {
     if (!hasAdminPrivileges()) {
-        console.log("The script does not have administrative privileges.");
         relaunchAsAdmin();
     } else {
-        console.log("");
     }
 }
 
